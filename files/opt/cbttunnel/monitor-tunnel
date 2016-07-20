@@ -1,0 +1,46 @@
+#!/bin/sh
+
+CBT_JAR_PATH="/opt/cbttunnel/cbttunnel.jar"
+CBT_DISCONNECT_MARKER="*Disconnecting from crossbrowsertesting.com port 22"
+CBT_SHUTDOWN_MARKER="*Done shutting down proxy"
+JAVA_BIN="/usr/bin/java"
+
+processLines() {
+    trap stopTunnel INT QUIT TERM
+
+    while read -r LINE; do
+        processLine "${LINE}"
+    done
+}
+
+processLine() {
+    echo "${LINE}"
+    case $1 in
+        ${CBT_DISCONNECT_MARKER})
+            stopTunnel
+            ;;
+        ${CBT_SHUTDOWN_MARKER})
+            killTunnel
+            ;;
+    esac
+}
+
+stopTunnel() {
+    echo "Stopping tunnel..."
+    pkill -TERM "${JAVA_BIN}"
+}
+
+killTunnel() {
+    echo "Killing tunnel..."
+    pkill -KILL "${JAVA_BIN}"
+}
+
+main() {
+    trap stopTunnel INT QUIT TERM
+
+    ${JAVA_BIN} -jar "${CBT_JAR_PATH}" -authkey "${CBT_TUNNEL_AUTHKEY}" | processLines &
+
+    wait
+}
+
+main
