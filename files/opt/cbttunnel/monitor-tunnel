@@ -14,7 +14,7 @@ processLines() {
 }
 
 processLine() {
-    echo "${LINE}"
+    echo "$1"
     case $1 in
         ${CBT_DISCONNECT_MARKER})
             stopTunnel
