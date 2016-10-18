@@ -1,5 +1,5 @@
 {
-  "name": "Cbt Tunnel",
+  "name": "cbt-tunnel-nodejs",
   "version": "0.0.1",
   "description": "a tunnel for Crossbrowsertesting.com as a docker image",
   "scripts": {
