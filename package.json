@@ -1,0 +1,11 @@
+{
+  "name": "Cbt Tunnel",
+  "version": "0.0.1",
+  "description": "a tunnel for Crossbrowsertesting.com as a docker image",
+  "scripts": {
+    "start": "cbt_tunnels"
+  },
+  "dependencies": {
+    "cbt_tunnels": "^0.0.28"
+  }
+}
