@@ -6,6 +6,6 @@
     "start": "cbt_tunnels"
   },
   "dependencies": {
-    "cbt_tunnels": "^0.0.28"
+    "cbt_tunnels": "^0.0.29"
   }
 }
